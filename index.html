@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CordovaApiDemo</title>
+
+    <!-- CordovaApiDemo references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <script src="cordova.js"></script>
+
+    <script src="scripts/index.js"></script>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+    <script>
+        function onDeviceReady() {
+            alert("启动结束")
+
+            $("#btn").click(function () {
+
+                $.getJSON('http://localhost:8080/learn/rest/first?jsoncallback=?').done(function (data) {
+                    alert("second " + data.BNO + " " + data.address.country + " " + data.name);
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+            })
+
+
+        }
+    </script>
+</head>
+<body>
+    <p>Hello, your application is ready!</p>
+    <a href="apidemo.html">apidemo</a>
+    <button class="btn btn-default navbar-btn btn-sm" id="btn">测试</button>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+</body>
+</html>
